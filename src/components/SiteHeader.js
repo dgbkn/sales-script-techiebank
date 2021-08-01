@@ -19,9 +19,9 @@ export default function SiteHeader() {
 
   return (
     <div className="site-header">
-      <Link to="/"><h1>Ninja Reviews</h1></Link>
+      <Link to="/"><h1>Scripts FEEL</h1></Link>
       <nav className="categories">
-        <span>Filter reviews by category:</span>
+        <span>Filter items by category:</span>
         {data.categories.map(category => (
           <Link key={category.id} to={`/category/${category.id}`}>
             {category.name}

@@ -7,14 +7,13 @@ const CATEGORY= gql`
     category(id: $id) {
       name,
       id,
-      reviews {
-        title,
-        body,
-        rating,
+      items{
         id,
-        categories {
-          name,
-          id
+        name,
+        content,
+        categories{
+          id,
+          name
         }
       }
     }
@@ -34,18 +33,17 @@ export default function Category() {
 
   return (
     <div>
-      <h2>{ data.category.name } Games</h2>
-      {data.category.reviews.map(review => (
-        <div key={review.id} className="review-card">
-          <div className="rating">{review.rating}</div>
-          <h2>{review.title}</h2>
+      <h2>{ data.category.name } Items </h2>
+      {data.category.items.map(item => (
+        <div key={item.id} className="review-card">
+          <h2>{item.name}</h2>
 
-          {review.categories.map(c => (
+          {item.categories.map(c => (
             <small key={c.id}>{c.name}</small>
           ))}
           
-          <p>{review.body.substring(0, 200)}...</p>
-          <Link to={`/details/${review.id}`}>Read more</Link>
+          <p>{item.content.substring(0, 200)}...</p>
+          <Link to={`/details/${item.id}`}>Read more</Link>
         </div>
       ))}
     </div>
