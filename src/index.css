@@ -1,4 +1,17 @@
 body{
     margin: 0;
+    overflow-x: hidden;
 }
 
+*{
+    font-family: 'Nunito';
+}
+
+a{
+    text-decoration: none;
+}
+
+h2.MuiTypography-root.MuiTypography-h5.MuiTypography-gutterBottom {
+    font-family: 'Nunito';
+    font-weight: 700;
+}

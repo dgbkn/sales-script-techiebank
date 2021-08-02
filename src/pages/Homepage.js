@@ -18,8 +18,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-
+import { containerVariants, buttonVariants } from '../motionUtils';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +42,8 @@ query GetPaginatedItems($start:Int! = 0){
     id,
     name,
     content,
+    photo,
+    link,
     categories{
       id,
       name
@@ -65,37 +67,62 @@ export default function Homepage() {
   console.log(data)
 
   return (
-    <div className={useStyles.root}>
+
+    <motion.div
+      className={useStyles.root}
+      style={{ margin: '20px 20px' }}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+
       <Grid container spacing={3}>
 
 
         {data.items.map(item => (
 
-          <Grid item xs={6} sm={3}>
+          <Grid item xs={6} sm={3} >
             <Paper className={useStyles.paper}>
 
-              <Card>
-                <CardActionArea>
-                  <CardMedia
-                    style={{ height: 140 }}
-                    image={item.photo}
-                    title={item.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {item.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                      {item.content.substring(0, 100)}....
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary" onClick={() => { history.push(`/details/${item.id}`) }}>
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
+              <motion.div
+                variants={buttonVariants}
+                whileHover="hover"
+              >
+
+                <Card>
+                  <CardActionArea onClick={() => item.link ? window.open(item.link, '_newtab' + Math.floor(Math.random() * 999999)) : {}}>
+                    <CardMedia
+                      style={{ height: 140 }}
+                      image={item.photo ? item.photo : `/logo.gif`}
+                      title={item.name}
+                      
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {item.name}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                        {item.content.substring(0, 100)}....
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" color="" onClick={() => { history.push(`/details/${item.id}`) }}>
+                      Learn More
+                    </Button>
+
+                    {item.link &&
+                      <a href={item.link} target="_blank">
+                        <Button size="small" color="">
+                          Link to Buy
+                        </Button>
+                      </a>
+                    }
+
+                  </CardActions>
+                </Card>
+              </motion.div>
 
 
             </Paper>
@@ -118,6 +145,6 @@ export default function Homepage() {
 
 
       </Grid>
-    </div>
+    </motion.div>
   )
 }

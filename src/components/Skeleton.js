@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Skeleton from '@material-ui/lab/Skeleton';
+import Grid from '@material-ui/core/Grid';
+
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -88,19 +90,27 @@ Media.propTypes = {
 };
 
 export default function SkeletonPage() {
+
+  var items = [];
+
+  for (let i = 0; i < 10; i++) {
+
+    items.push(<>
+      <Grid item xs={6} sm={3}>
+      <Media loading />
+     </Grid>     
+    </>);
+  }
+
+
+
+
+
   return (
     <div>
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
-      <Media loading />
+    <Grid container spacing={3}>
+     {items}
+      </Grid>
     </div>
   );
 }

@@ -1,5 +1,15 @@
 export const defaultEasing = [0.6, -0.05, 0.01, 0.99];
 
+
+export const curveSpring = {
+    type: "spring",
+    stiffness: 400,
+    damping: 30
+};
+
+
+
+
 export const staggerHalf = {
 	animate: { transition: { staggerChildren: .05 } }
 }
@@ -74,3 +84,50 @@ export const defaultPageFadeInVariants = {
 	animate: { opacity: 1, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" },
 	exit: { opacity: 0, transition: { duration: .6, ease: defaultEasing }, willChange: "opacity, transform" }
 };
+
+
+
+export const buttonVariants = {
+	hover: {
+	  scale: 1.1,
+	  textShadow: "0px 0px 8px rgb(255,255,255)",
+	  boxShadow: "0px 0px 8px rgb(255,255,255)",
+	  transition: {
+		duration: 0.3,
+		// yoyo: 5
+	  }
+	}
+  }
+  
+  export const containerVariants = {
+	hidden: { 
+	  opacity: 0.2, 
+	  y:'10vh'
+	},
+	visible: { 
+	  opacity: 1, 
+	  y:'0',
+	  transition: { duration: 0.7 }
+	},
+	exit: {
+	  x: "-100vh",
+	  transition: { ease: 'easeInOut',duration: 1}
+	}
+  };
+
+
+  export const badgeVarients = {
+	hidden: { 
+	  x:'10vh'
+	},
+	visible: { 
+	  x:'0',
+	  transition: { duration: 0.7 }
+	},
+	exit: {
+	  x: "-100vh",
+	  transition: { ease: 'easeInOut',duration: 1}
+	}
+  };
+
+  

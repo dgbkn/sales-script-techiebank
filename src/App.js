@@ -12,7 +12,8 @@ import { CssBaseline, Paper } from '@material-ui/core';
 import { useState } from 'react';
 import Header from './components/Header';
 import { useMemo } from 'react';
-import {  cyan, teal } from '@material-ui/core/colors';
+import SearchPage from './pages/SearchPage';
+// import {  cyan, teal } from '@material-ui/core/colors';
 // apollo client
 const client = new ApolloClient({
   uri: 'https://strapi-demo.shreeram4.repl.co/graphql',
@@ -39,9 +40,9 @@ function App() {
           },
           secondary: {
             light: '#ff7961',
-            main: '#f44336',
-            dark: '#ba000d',
-            contrastText: '#000',
+            main: '#311b92',
+            dark: '#000000',
+            contrastText: '#fff',
           },
           
         },
@@ -56,11 +57,10 @@ function App() {
       <AnimatePresence exitBeforeEnter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Paper>
+          <Paper elevation={0}>  
             <div className="App">
               <Header darktheme={darktheme} setdarkTheme={setdarkTheme} />
-              <SiteHeader />
-              <Switch>
+                <Switch>
                 <Route exact path="/">
                   <Homepage />
                 </Route>
@@ -70,6 +70,11 @@ function App() {
                 <Route path="/category/:id">
                   <Category />
                 </Route>
+
+                <Route path="/search/:query">
+                  <SearchPage />
+                </Route>
+                
               </Switch>
             </div>
           </Paper>

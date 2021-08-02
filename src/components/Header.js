@@ -8,14 +8,33 @@ import { alpha, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+import { motion } from "framer-motion";
 
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4'; //light
-
+import { useState } from 'react';
 import { ChangeHistory } from '@material-ui/icons';
 import CodeIcon from '@material-ui/icons/Code';
 import { useHistory } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button, ButtonGroup } from '@material-ui/core';
+import { Link } from 'react-router-dom'
+import Skeleton from '@material-ui/lab/Skeleton';
+
+import { useQuery, gql } from '@apollo/client'
+import { badgeVarients } from '../motionUtils';
+import { Paper } from '@material-ui/core';
+
+const CATEGORIES = gql`
+  query GetCategories {
+    categories {
+      name,
+      id
+    }
+  }
+`
+
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -74,13 +93,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ setdarkTheme, darktheme }) {
     const classes = useStyles();
-
     const history = useHistory();
 
+    var [location, setLocation] = useState(history.location.pathname);
+
+
+
+    const { loading, error, data } = useQuery(CATEGORIES)
+
+    if (loading) return <p>   <Skeleton animation="wave" height={10} width="100%" style={{ marginBottom: 6 }} />  .</p>
+    if (error) return <p>Error fetching categories</p>
+
     return (
-        <div className={classes.root}>
+        <motion.div className={classes.root}
+            initial={{ x: '10px' }}
+            animate={{
+                x: '0', transition: { duration: 1 }
+            }}
+            transition={{ delay: 5 }}
+
+
+        >
             <AppBar position="static" color="primary">
                 <Toolbar>
+
 
 
 
@@ -101,7 +137,7 @@ export default function Header({ setdarkTheme, darktheme }) {
 
                     <Typography className={classes.title} variant="h6" noWrap>
                         <Button onClick={() => history.push('/')}
-                        style={{color:'white'}}
+                            style={{ color: 'white' }}
                         >
                             Scripts Feel
                         </Button>
@@ -118,16 +154,16 @@ export default function Header({ setdarkTheme, darktheme }) {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
-                            onChange={(e)=>{
+                            onChange={(e) => {
 
-                                if(e.target.value){
+                                if (e.target.value) {
 
-                                history.push(`/search/${encodeURIComponent(e.target.value)}}`);
-                            
-                                }else{
+                                    history.push(`/search/${encodeURIComponent(e.target.value.trim())}`);
+
+                                } else {
                                     history.push(`/`);
                                 }
-                            
+
                             }}
                         />
                     </div>
@@ -145,6 +181,30 @@ export default function Header({ setdarkTheme, darktheme }) {
 
                 </Toolbar>
             </AppBar>
-        </div>
+
+
+
+            <Paper style={{ display: 'inline', padding: '10px' }} elevation={0} id="cat__head">
+                <Typography variant="p" style={{ margin: '20px', display: 'inline-block', fontSize: '18px' }}>Categories: </Typography>
+
+                <motion.div
+      variants={badgeVarients}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+                <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{ margin: '20px', display: 'inline-block', boxShadow: 'none' }} >
+                    
+                    <Button color={window.location.pathname === `/` ? 'secondary' : 'primary'} key={`alls`} onClick={() => { history.push(`/`); setLocation(`/`) }} style={{ borderRadius: '20px', margin: '2px' }}>All</Button>
+
+                    {data.categories.map(category => {
+                        
+                        return <Button color={window.location.pathname === location && location.includes(`${category.id}`) ? 'secondary' : 'primary'} key={category.id} onClick={() => { history.push(`/category/${category.id}`); setLocation(`/category/${category.id}`) }} style={{ borderRadius: '20px', margin: '2px' }}>{category.name}</Button>
+                    })}
+                </ButtonGroup>
+
+                    </motion.div>
+            </Paper>
+        </motion.div>
     );
 }
