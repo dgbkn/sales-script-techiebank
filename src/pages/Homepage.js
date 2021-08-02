@@ -77,6 +77,27 @@ export default function Homepage() {
       exit="exit"
     >
 
+
+      <section id="sec1" className="hero">
+        <div className="background-image" style={{backgroundImage: 'url(photos/Desktop\ -\ 1.svg)'}} bis_skin_checked={1} />
+        <div className="content-area" bis_skin_checked={1}>
+          <h1 className="name"> Bank Of Technology</h1>
+          <p className="description">TechieBank brings to you, all the latest updates of the Tech world.
+            Keep Learning and remain updated about latest technology related
+            updates </p>
+          <div className="tagline" bis_skin_checked={1}>
+            <p id="tagline" className>
+              WITHDRAW
+              KNOWLEDGE ABOUT
+              TECHNOLOGY
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+
       <Grid container spacing={3}>
 
 
