@@ -71,7 +71,7 @@ export default function ItemDetails() {
 
   // console.log(data)
   return (
-    <div className={useStyles.root} style={{ margin: '2% 2%' }}>
+    <div className={useStyles.root} style={{ margin: '2% 10%' }}>
 
       {/*       
       <h1>{data.item.name}</h1>

@@ -100,7 +100,6 @@ export default function Homepage() {
     /> */}
 
 
-    <Hero />
 
       <Grid container spacing={3}>
 

@@ -40,7 +40,8 @@ const Hero = props => {
         <motion.div className={clsx(classes.root, className)} {...rest} style={{ paddingLeft:'40px'}}
         initial={{x:'-100px'}}
         animate={{x:'0'}}
-        whileHover={{scale:1.009,boxShadow:' 10px 10px 30px #bebebe,-10px -10px 30px #ffffff'}}
+        whileHover={{scale:1.009,boxShadow:' 10px 10px 30px #bebebe,-10px -10px 30px #ffffff',	  transition: { duration: 0.7 }
+    }}
         >
             <Grid
                 container
@@ -59,7 +60,10 @@ const Hero = props => {
                 >
                     <SectionHeader
                         title={
-                            <span>
+                            <motion.span
+                            whileHover={{scale:1.07,color:'red'}}
+                            >
+                                
                                 Beautiful Scripts That Will
                                 <br />
                                 <Typography component="span" variant="inherit" color="primary">
@@ -75,7 +79,7 @@ const Hero = props => {
                                     />
 
                                 </Typography>
-                            </span>
+                            </motion.span>
                         }
                         subtitle="Save yourself time and money By Using PreBuilt Templates From Us."
                         ctaGroup={[

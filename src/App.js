@@ -14,7 +14,7 @@ import Header from './components/Header';
 import { useMemo } from 'react';
 import SearchPage from './pages/SearchPage';
 import Footer from './components/Footer/Footer';
-
+import Hero from './components/Hero/Hero';
 // import {  cyan, teal } from '@material-ui/core/colors';
 
 // apollo client
@@ -63,8 +63,10 @@ function App() {
           <Paper elevation={0}>  
             <div className="App">
               <Header darktheme={darktheme} setdarkTheme={setdarkTheme} />
+
                 <Switch>
                 <Route exact path="/">
+                  <Hero />
                   <Homepage />
                 </Route>
                 <Route path="/details/:id">

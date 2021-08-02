@@ -9,7 +9,7 @@ export default function Footer() {
                 <Typography component="span" variant="h6" color="primary" style={{fontFamily:'Nunito'}}>
                 Crafted By Love With 
             <Typewriter
-                                        words={[' Lakshit Agarwal 👽 ', ' Dev Goyal 🤕 ', ' Himesh Parashar 🤖 ', ' Techno Botics 🦸 ']}
+                                        words={[ ' Techno Botics 🦸 ',' Lakshit Agarwal 👽 ', ' Himesh Parashar 🤖 ', ' Dev Goyal 🤕 ']}
                                         loop={0}
                                         cursor
                                         cursorStyle='_'
