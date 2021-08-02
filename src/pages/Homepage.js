@@ -20,6 +20,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { containerVariants, buttonVariants } from '../motionUtils';
 import { motion } from 'framer-motion';
+import SectionHeader from '../components/Hero/SectionHeader';
+import { Image } from '@material-ui/icons';
+import Hero from '../components/Hero/Hero';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,26 +81,26 @@ export default function Homepage() {
       exit="exit"
     >
 
+{/* <SectionHeader
+        overline={
+        
+        <Image src="/images/illustrations/rated-by-our-customer.png" alt="rating" style={{ width: 120, height: 'auto' }} width="auto" />
+      
+      
+      }
+        title="Rated 5 out of 5 stars by our customers!"
+        subtitle="Companies from across the globe have had fantastic experiences using TheFront. Here’s what they have to say."
+        ctaGroup={[(
+            <Button color="primary" variant="contained">Submit</Button>
+        ), (
+            <Button color="primary" variant="outlined">Learn More</Button>
+        )]}
+        align="left"
+        fadeUp
+    /> */}
 
-      <section id="sec1" className="hero">
-        <div className="background-image" style={{backgroundImage: 'url(photos/Desktop\ -\ 1.svg)'}} bis_skin_checked={1} />
-        <div className="content-area" bis_skin_checked={1}>
-          <h1 className="name"> Bank Of Technology</h1>
-          <p className="description">TechieBank brings to you, all the latest updates of the Tech world.
-            Keep Learning and remain updated about latest technology related
-            updates </p>
-          <div className="tagline" bis_skin_checked={1}>
-            <p id="tagline" className>
-              WITHDRAW
-              KNOWLEDGE ABOUT
-              TECHNOLOGY
-            </p>
-          </div>
 
-        </div>
-      </section>
-
-
+    <Hero />
 
       <Grid container spacing={3}>
 

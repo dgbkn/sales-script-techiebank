@@ -13,7 +13,10 @@ import { useState } from 'react';
 import Header from './components/Header';
 import { useMemo } from 'react';
 import SearchPage from './pages/SearchPage';
+import Footer from './components/Footer/Footer';
+
 // import {  cyan, teal } from '@material-ui/core/colors';
+
 // apollo client
 const client = new ApolloClient({
   uri: 'https://strapi-demo.shreeram4.repl.co/graphql',
@@ -34,7 +37,7 @@ function App() {
           type: darktheme ? 'dark' : 'light',
           primary: {
             light: '#757ce8',
-            main: darktheme ? '#3f50b5' : '#1976D2',
+            main: darktheme ? '#f57f17' : '#1976D2',
             dark: '#000000',
             contrastText: '#fff',
           },
@@ -76,6 +79,7 @@ function App() {
                 </Route>
                 
               </Switch>
+              <Footer/>
             </div>
           </Paper>
         </ThemeProvider>

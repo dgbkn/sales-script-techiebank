@@ -183,16 +183,16 @@ export default function Header({ setdarkTheme, darktheme }) {
             </AppBar>
 
 
-
-            <Paper style={{ display: 'inline', padding: '10px' }} elevation={0} id="cat__head">
-                <Typography variant="p" style={{ margin: '20px', display: 'inline-block', fontSize: '18px' }}>Categories: </Typography>
-
-                <motion.div
+            <motion.div
       variants={badgeVarients}
       initial="hidden"
       animate="visible"
       exit="exit"
     >
+            <Paper style={{ display: 'inline', padding: '10px' }} elevation={0} id="cat__head">
+                <Typography variant="p" style={{ margin: '20px', display: 'inline-block', fontSize: '18px' }}>Categories: </Typography>
+
+
                 <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group" style={{ margin: '20px', display: 'inline-block', boxShadow: 'none' }} >
                     
                     <Button color={window.location.pathname === `/` ? 'secondary' : 'primary'} key={`alls`} onClick={() => { history.push(`/`); setLocation(`/`) }} style={{ borderRadius: '20px', margin: '2px' }}>All</Button>
@@ -203,8 +203,8 @@ export default function Header({ setdarkTheme, darktheme }) {
                     })}
                 </ButtonGroup>
 
-                    </motion.div>
             </Paper>
+                    </motion.div>
         </motion.div>
     );
 }
